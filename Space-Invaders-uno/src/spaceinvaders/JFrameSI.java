@@ -27,6 +27,7 @@ public class JFrameSI extends javax.swing.JFrame {
         setSize(800, 600);
         var exe = Executors.newCachedThreadPool();
         exe.execute(new AliensThread(jButtonAlien1,jButtonAlien2,jButtonAlien3));
+        exe.execute(new TankThread(jButtonStarship));
     }
 
     /**

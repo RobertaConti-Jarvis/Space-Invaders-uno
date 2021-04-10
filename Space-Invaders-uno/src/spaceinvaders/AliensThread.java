@@ -16,7 +16,7 @@ public class AliensThread implements Runnable{
         //creare collezione alieni
         for (int i = 0; i < icone.length; i++) {
             JButton ico = icone[i];
-            Alien a = new Alien(i*20.0, ico);
+            Alien a = new Alien(i*60.0, ico);
             alieni.add(a);
         }
     }
