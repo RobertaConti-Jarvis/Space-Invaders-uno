@@ -29,7 +29,9 @@ public class Rocket extends ElementoDiGioco{
         }
         else{
             setTargetX(JFrameSI.ROCKET_YMIN);
+//            setStepY(-getStepY());
         }
+        
     }
      
 }
