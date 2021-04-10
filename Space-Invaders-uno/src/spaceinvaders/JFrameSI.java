@@ -13,7 +13,6 @@ public class JFrameSI extends javax.swing.JFrame {
     public static final double ROCKET_YMIN = 270.0;
     public static final double ROCKET_YMAX = 8.0;
 
-    CollezioneElementi coll;
     Rocket rocket;
     Tank tank;
 
@@ -27,7 +26,8 @@ public class JFrameSI extends javax.swing.JFrame {
         setSize(800, 600);
         var exe = Executors.newCachedThreadPool();
         exe.execute(new AliensThread(jButtonAlien1,jButtonAlien2,jButtonAlien3));
-        exe.execute(new TankThread(jButtonStarship));
+        tank = new Tank(jButtonStarship);
+        exe.execute(new TankThread(tank));
     }
 
     /**
@@ -100,32 +100,33 @@ public class JFrameSI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonFire, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonRocket, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonStarship, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap()
+                        .addComponent(jButtonStarship, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
+                        .addContainerGap()
+                        .addComponent(jButtonRocket, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButtonAlien2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonAlien1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonAlien3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jButtonAlien3))))
                 .addContainerGap(90, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(23, 23, 23)
                 .addComponent(jButtonAlien1)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonAlien2)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonAlien3)
-                .addGap(42, 42, 42)
+                .addGap(48, 48, 48)
                 .addComponent(jButtonRocket)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonStarship)
-                .addGap(37, 37, 37)
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonLeft)
                     .addComponent(jButtonRight)
@@ -145,14 +146,7 @@ public class JFrameSI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonStarshipActionPerformed
 
     private void jButtonFireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFireActionPerformed
-         if (rocket != null && !rocket.getButton().isVisible()) {
-            coll.remove(rocket);
-            rocket = new Rocket(tank.getX(), jButtonRocket);
-            coll.add(rocket);
-        } else if (rocket == null) {
-            rocket = new Rocket(tank.getX(), jButtonRocket);
-            coll.add(rocket);
-        }
+        
     }//GEN-LAST:event_jButtonFireActionPerformed
 
     private void jButtonRightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRightActionPerformed
